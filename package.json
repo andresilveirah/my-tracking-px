@@ -1,0 +1,16 @@
+{
+  "name": "my-tracking-px",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Andre Herculano <andresilveirah@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "watch": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.3"
+  }
+}
