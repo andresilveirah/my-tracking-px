@@ -23,7 +23,15 @@ const tracker = (req, _res, next) => {
 app.use(tracker)
 app.use(express.static('./'))
 
-app.get('/hello', (_req, res) => res.send('Hello'))
+app.get('/hello', (_req, res) => {
+  const imgB64 = "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+
+  res.writeHead(200, {
+    'Content-Type': 'image/png',
+    'Content-Length': imgB64.length
+  });
+  res.end(imgB64);
+})
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`))
 
