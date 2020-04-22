@@ -27,7 +27,7 @@ app.get('/hello', (_req, res) => {
   const imgB64 = "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
 
   res.writeHead(200, {
-    'Content-Type': 'image/png',
+    'Content-Type': 'image/gif',
     'Content-Length': imgB64.length
   });
   res.end(imgB64);
