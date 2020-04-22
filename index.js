@@ -18,19 +18,20 @@ const tracker = (req, _res, next) => {
     .catch(() => {
       next()
     })
+  next()
 }
 
 app.use(tracker)
 app.use(express.static('./'))
 
-app.get('/hello', (_req, res) => {
-  const imgB64 = "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+app.get('/hello.png', (_req, res) => {
+  const img = Buffer.from("R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=", 'base64');
 
   res.writeHead(200, {
-    'Content-Type': 'image/gif',
-    'Content-Length': imgB64.length
+    'Content-Type': 'image/png',
+    'Content-Length': img.length
   });
-  res.end(imgB64);
+  res.end(img);
 })
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`))
