@@ -6,13 +6,18 @@ const port = process.PORT || 3000
 
 app.set('trust proxy', true)
 
-const tracker = async (req, _res, next) => {
+const tracker = (req, _res, next) => {
   console.log("Request IP: ", req.ip)
-  const location = await fetch(`http://ip-api.com/json/${req.ip}`)
+  fetch(`http://ip-api.com/json/${req.ip}`)
     .then(r => r.json())
-  console.log(JSON.stringify(location, null, 2))
-  console.log(`ping: ${JSON.stringify(req.query)} -> ${location.city} - ${location.country}`)
-  next()
+    .then(location => {
+      console.log(JSON.stringify(location, null, 2))
+      console.log(`ping: ${JSON.stringify(req.query)} -> ${location.city} - ${location.country}`)
+      next()
+    })
+    .catch(() => {
+      next()
+    })
 }
 
 app.use(tracker)
